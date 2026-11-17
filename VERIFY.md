@@ -33,7 +33,7 @@ does not require access to the private source repository.
 ## Which releases have signatures?
 
 The 3.2.1 release predates the workflow signing steps and is checksum-verified
-only. Releases built from `v*` or `desktop-v*` tags after that include
+only. 3.2.2 and later releases built from `v*` or `desktop-v*` tags include
 `SHA256SUMS` and `SHA256SUMS.sigstore.json`.
 
 GitHub build attestations are not available for user-owned private source
