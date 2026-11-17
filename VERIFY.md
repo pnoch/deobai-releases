@@ -2,44 +2,40 @@
 
 ## Checksums
 
-Download the files you use and the matching `SHA256SUMS-<version>.txt`, then
-run:
+Download the files you use and the matching checksum file (`SHA256SUMS`, or
+`SHA256SUMS-<version>.txt` for the manual 3.2.1 release), then run:
 
 ```bash
-sha256sum -c SHA256SUMS-<version>.txt
+sha256sum -c SHA256SUMS
 ```
 
-## Signatures and attestations
+## Sigstore signature
 
-Releases built by the `desktop-release` GitHub workflow also ship:
+Releases built by the `linux-release` or `desktop-release` GitHub workflows also
+ship:
 
 - `SHA256SUMS` — signed keyless with Sigstore (cosign)
 - `SHA256SUMS.sigstore.json` — the verification bundle
-- `attestation.jsonl` — GitHub build-provenance attestation for the binaries
 
-Verify the checksums signature:
+Verify the signature:
 
 ```bash
 cosign verify-blob \
   --bundle SHA256SUMS.sigstore.json \
-  --certificate-identity-regexp 'https://github.com/pnoch/deObAI/.github/workflows/desktop-release.yml@refs/(tags/desktop-v.*|heads/main)' \
+  --certificate-identity-regexp 'https://github.com/pnoch/deObAI/.github/workflows/(linux-release|desktop-release).yml@refs/(tags/.*|heads/main)' \
   --certificate-oidc-issuer https://token.actions.githubusercontent.com \
   SHA256SUMS
 ```
 
-Verify a binary's build provenance:
-
-```bash
-gh attestation verify deOBai_<version>_amd64.AppImage \
-  --bundle attestation.jsonl \
-  --repo pnoch/deObAI
-```
-
-The attestation bundle can be verified offline; `gh` may still require a
-GitHub login because the source repository is private.
+The signature is recorded in the public Sigstore transparency log; verifying it
+does not require access to the private source repository.
 
 ## Which releases have signatures?
 
 The 3.2.1 release predates the workflow signing steps and is checksum-verified
-only. Releases built from `desktop-v*` tags after that include the signature
-and attestation files.
+only. Releases built from `v*` or `desktop-v*` tags after that include
+`SHA256SUMS` and `SHA256SUMS.sigstore.json`.
+
+GitHub build attestations are not available for user-owned private source
+repositories, so the Sigstore signature is the provenance record for these
+releases.

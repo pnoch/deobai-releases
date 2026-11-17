@@ -6,7 +6,6 @@ Download the latest Linux desktop builds from the Releases page, and verify the
 SHA-256 checksums published with each release.
 
 The binaries are distributed under the MIT license; see [LICENSE](LICENSE).
-See [VERIFY.md](VERIFY.md) for checksum, Sigstore signature, and build
-attestation verification.
+See [VERIFY.md](VERIFY.md) for checksum and Sigstore signature verification.
 
 Windows, macOS, and Android packages are not published yet.
