@@ -1,4 +1,4 @@
-# Verify a deOBai release
+# Verify a deObAI release
 
 ## Checksums
 
