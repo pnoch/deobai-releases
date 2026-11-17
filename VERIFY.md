@@ -33,9 +33,9 @@ does not require access to the private source repository.
 ## Third-party notices
 
 Each release includes `THIRD_PARTY_NOTICES.md`, a summary of the production npm
-packages and Rust crates with their licenses and repositories. The project's own
-MIT license is in `LICENSE`; full dependency license texts are available at the
-linked package repositories.
+packages and Rust crates with their licenses and repositories, and
+`THIRD_PARTY_LICENSES.md` with the full license texts. The project's own MIT
+license is in `LICENSE`.
 
 ## Which releases have signatures?
 
