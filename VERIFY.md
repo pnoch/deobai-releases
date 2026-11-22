@@ -6,7 +6,7 @@ Download the files you use and the matching checksum file (`SHA256SUMS`, or
 `SHA256SUMS-<version>.txt` for the manual 3.2.1 release), then run:
 
 ```bash
-sha256sum -c SHA256SUMS
+sha256sum -c --ignore-missing SHA256SUMS
 ```
 
 ## Sigstore signature
