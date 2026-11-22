@@ -20,11 +20,17 @@ ship:
 Verify the signature:
 
 ```bash
+tag=v3.2.19           # the release you downloaded
+workflow=linux-release # desktop-release for desktop-v* builds
+
 cosign verify-blob \
   --bundle SHA256SUMS.sigstore.json \
-  --certificate-identity-regexp 'https://github.com/pnoch/deObAI/.github/workflows/(linux-release|desktop-release).yml@refs/(tags/.*|heads/main)' \
+  --certificate-identity "https://github.com/pnoch/deObAI/.github/workflows/${workflow}.yml@refs/tags/${tag}" \
   --certificate-oidc-issuer https://token.actions.githubusercontent.com \
   SHA256SUMS
+
+Use the exact identity for the release you downloaded. Exact matching avoids
+accepting a signature from a different tag or workflow.
 ```
 
 The signature is recorded in the public Sigstore transparency log; verifying it
